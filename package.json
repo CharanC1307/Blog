@@ -1,0 +1,26 @@
+{
+    "name": "Blog",
+    "version": "1.0.0",
+    "description": "This is my experimental blog.",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js",
+        "devStart": "Nodemon server.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "dompurify": "^2.3.6",
+        "ejs": "^3.1.6",
+        "express": "^4.17.3",
+        "jsdom": "^19.0.0",
+        "marked": "^4.0.12",
+        "method-override": "^3.0.0",
+        "mongoose": "^6.2.7",
+        "slugify": "^1.6.5"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.15"
+    }
+}

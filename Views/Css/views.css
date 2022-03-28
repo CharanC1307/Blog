@@ -1,0 +1,9 @@
+body{
+    margin: 1.5vw;
+}
+
+.btn-info{
+    background-color: #1BA1B8;
+    border-color: #1BA1B8;
+    color: white;
+}
