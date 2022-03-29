@@ -1,7 +1,7 @@
 const express = require("express")
 const mongoose = require('mongoose')
-const Article = require('./models/article')
-const articleRouter=require('./routes/articles')
+const Article = require('./Models/article')
+const articleRouter=require('./Routes/articles')
 const methodOverride = require('method-override')
 const path = require('path')
 
@@ -32,9 +32,9 @@ app.use(express.static(path.join(__dirname+'/views')))
 //Sets up a server at the '/' area. Then the function is how we handle the request. Req is incoming data. Res is the responding data.
 app.get('/', async (req, res)=>{
     const articles= await Article.find().sort({ createdAt: 'desc' })
-    res.render('articles/index', {articles: articles})
+    res.render('Articles/index', {articles: articles})
 })
 
-app.use('/articles', articleRouter)
+app.use('/Articles', articleRouter)
 
 app.listen(PORT, ()=>{console.log(`App listening at port ${PORT}`)})
