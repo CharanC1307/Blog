@@ -8,9 +8,7 @@ const app=express()
 const PORT = process.env.PORT || 8080
 const URI = process.env.MONGODB_URI || 'mongodb+srv://Charan:Charan1307@database.xowp4.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 
-mongoose.connect(
-    URI
-);
+mongoose.connect(URI);
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error: "));
@@ -26,12 +24,12 @@ app.set('view engine', 'ejs')
 //then it goes to articleRouter
 app.use(express.urlencoded({ extended: false}))
 app.use(methodOverride('_method'))
-app.use(express.static(__dirname+'/views'))
+app.use(express.static(__dirname+'/views/'))
 
 //Sets up a server at the '/' area. Then the function is how we handle the request. Req is incoming data. Res is the responding data.
 app.get('/', async (req, res)=>{
     const articles= await Article.find().sort({ createdAt: 'desc' })
-    res.render('Articles/index', {articles: articles})
+    res.render('articles/index', {articles: articles})
 })
 
 app.use('/articles', articleRouter)
