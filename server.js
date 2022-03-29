@@ -6,9 +6,10 @@ const methodOverride = require('method-override')
 const app=express()
 
 const PORT = process.env.PORT || 8080
+const URI = process.env.MONGODB_URI || 'mongodb+srv://Charan:Charan1307@database.xowp4.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 
 mongoose.connect(
-    'mongodb+srv://Charan:Charan1307@cluster0.xowp4.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+    URI
 );
 
 const db = mongoose.connection;
