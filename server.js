@@ -19,7 +19,7 @@ db.once("open", function () {
 });
 
 //Setting all files to ejs normally
-app.set('views', path.join(__dirname, '/views'))
+app.set('Views', path.join(__dirname, '/Views'))
 app.set('view engine', 'ejs')
 
 //app.use is called whenver there is a request.
@@ -27,7 +27,7 @@ app.set('view engine', 'ejs')
 //then it goes to articleRouter
 app.use(express.urlencoded({ extended: false}))
 app.use(methodOverride('_method'))
-app.use(express.static(path.join(__dirname+'/views')))
+app.use(express.static(path.join(__dirname+'/Views')))
 
 //Sets up a server at the '/' area. Then the function is how we handle the request. Req is incoming data. Res is the responding data.
 app.get('/', async (req, res)=>{
