@@ -6,18 +6,18 @@ const router = express.Router()
 //https://www.restapitutorial.com/lessons/httpmethods.html#:~:text=The%20primary%20or%20most-commonly,but%20are%20utilized%20less%20frequently.
 
 router.get('/new', (req, res) => {
-    res.render('Articles/new', {article: new Article()})
+    res.render('articles/new', {article: new Article()})
 })
 
 router.get('/:slug', async (req, res) => {
     const article = await Article.findOne({ slug: req.params.slug})
     if (article == null) res.redirect('/')
-    res.render('Articles/show', { article: article})
+    res.render('articles/show', { article: article})
 })
 
 router.get('/edit/:id', async (req, res) => {
     const article = await Article.findById(req.params.id)
-    res.render('Articles/edit', { article: article})
+    res.render('articles/edit', { article: article})
 })
 
 //Async https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
@@ -47,11 +47,11 @@ function saveArticleAndRedirect(path) {
         article.markdown = req.body.markdown
         try {
             article = await article.save()
-            res.redirect(`/Articles/${article.slug}`)
+            res.redirect(`/articles/${article.slug}`)
         }
         catch(e) {
             console.log(e)
-            res.render(`Articles/${path}`, {article: article})
+            res.render(`articles/${path}`, {article: article})
         }
     }
 }
