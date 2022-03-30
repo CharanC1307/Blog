@@ -1,7 +1,7 @@
 const express = require("express")
 const mongoose = require('mongoose')
-const Article = require('./Models/article')
-const articleRouter=require('./Routes/articles')
+const Article = require('./models/article')
+const articleRouter=require('./routes/articles')
 const methodOverride = require('method-override')
 const path = require('path')
 
@@ -32,7 +32,12 @@ app.use(express.static(path.join(process.cwd()+'/views')))
 //Sets up a server at the '/' area. Then the function is how we handle the request. Req is incoming data. Res is the responding data.
 app.get('/', async (req, res)=>{
     const articles= await Article.find().sort({ createdAt: 'desc' })
-    res.render('articles/index', {articles: articles})
+    try {
+        res.render('articles/index', {articles: articles})
+    }
+    catch(e) {
+        console.log(e)
+    }
 })
 
 app.use('/articles', articleRouter)

@@ -1,6 +1,5 @@
 const express = require('express')
-const article = require('../Models/article')
-const Article = require('../Models/article')
+const Article = require('../models/article')
 const router = express.Router()
 
 //https://www.restapitutorial.com/lessons/httpmethods.html#:~:text=The%20primary%20or%20most-commonly,but%20are%20utilized%20less%20frequently.
