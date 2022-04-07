@@ -1,3 +1,6 @@
+#process.env
+EnvironmentVars.json
+
 # Logs
 logs
 *.log

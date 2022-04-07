@@ -4,18 +4,22 @@ const Article = require('./models/article')
 const articleRouter=require('./routes/articles')
 const methodOverride = require('method-override')
 const path = require('path')
+const util = require('util')
+const fs = require('fs')
 
 const app=express()
 
-const PORT = process.env.PORT || 8080
-const URI = process.env.MONGODB_URI || 'mongodb+srv://Charan:Charan1307@database.xowp4.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+let json = "wd"
+jsonString = fs.readFileSync("./EnvironmentVars.json", "utf8")
+json = JSON.parse(jsonString);
 
-mongoose.connect(URI);
+const PORT = process.env.PORT || 8080
+const URI = process.env.MONGODB_URI || json.MONGODB_URI
 
 const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error: "));
+db.on("error", console.error.bind(console, "connection error: "))
 db.once("open", function () {
-    console.log("Connected successfully");
+    console.log("Connected successfully")
 });
 
 //Setting all files to ejs normally
