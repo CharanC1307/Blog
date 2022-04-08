@@ -9,12 +9,13 @@ const fs = require('fs')
 
 const app=express()
 
-let json = "wd"
-jsonString = fs.readFileSync("./EnvironmentVars.json", "utf8")
-json = JSON.parse(jsonString);
+const jsonString = fs.readFileSync("./EnvironmentVars.json", "utf8")
+const json = JSON.parse(jsonString);
 
 const PORT = process.env.PORT || 8080
 const URI = process.env.MONGODB_URI || json.MONGODB_URI
+
+mongoose.connect(URI);
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error: "))
