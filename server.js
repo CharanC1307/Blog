@@ -9,8 +9,10 @@ const fs = require('fs')
 
 const app=express()
 
-const jsonString = fs.readFileSync("./EnvironmentVars.json", "utf8")
-const json = JSON.parse(jsonString);
+try {
+    const jsonString = fs.readFileSync("./EnvironmentVars.json", "utf8")
+    const json = JSON.parse(jsonString);
+}catch (err) {}
 
 const PORT = process.env.PORT || 8080
 const URI = process.env.MONGODB_URI || json.MONGODB_URI
