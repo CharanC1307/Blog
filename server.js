@@ -1,21 +1,14 @@
+require('dotenv').config()
 const express = require("express")
 const mongoose = require('mongoose')
 const Article = require('./models/article')
 const articleRouter=require('./routes/articles')
 const methodOverride = require('method-override')
 const path = require('path')
-const util = require('util')
-const fs = require('fs')
 
+const PORT = process.env.PORT
+const URI = process.env.MONGODB_URI
 const app=express()
-
-try {
-    const jsonString = fs.readFileSync("./EnvironmentVars.json", "utf8")
-    const json = JSON.parse(jsonString);
-}catch (err) {}
-
-const PORT = process.env.PORT || 8080
-const URI = process.env.MONGODB_URI || json.MONGODB_URI
 
 mongoose.connect(URI);
 
@@ -26,7 +19,7 @@ db.once("open", function () {
 });
 
 //Setting all files to ejs normally
-app.set('views', path.join(process.cwd(), '/views'))
+app.set('views', path.join(__dirname, '/views'))
 app.set('view engine', 'ejs')
 
 //app.use is called whenver there is a request.
@@ -34,7 +27,8 @@ app.set('view engine', 'ejs')
 //then it goes to articleRouter
 app.use(express.urlencoded({ extended: false}))
 app.use(methodOverride('_method'))
-app.use(express.static(path.join(process.cwd()+'/views')))
+app.use(express.static(path.join(__dirname, '/views')))
+app.use('/favicon.ico', express.static(path.join(__dirname, 'favicon.ico')))
 
 //Sets up a server at the '/' area. Then the function is how we handle the request. Req is incoming data. Res is the responding data.
 app.get('/', async (req, res)=>{
